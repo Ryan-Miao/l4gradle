@@ -1,0 +1,43 @@
+version 'unspecified'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+task upper <<{
+    String something = "mY_vWa";
+    println "Origin:"+something;
+    println "Upper case:"+something.toUpperCase();
+}
+
+task count << {
+    4.times {print "$it "}
+}
+
+//dependsOn
+task hello2 << {
+    println "Hello World!"
+}
+task intro(dependsOn: hello2) << {
+    println "Hi gradle"
+}
+
+
+
+
+
+
+
+
+
+
