@@ -28,9 +28,40 @@ task count << {
 task hello2 << {
     println "Hello World!"
 }
+hello2.doFirst{
+    println "hello first"
+}
+hello2.doLast{
+    println "hello last"
+}
+hello2 << {
+    println "another do Last,and can get the task name using \$: $hello2.name"
+}
+
+
+
+
+
+
+
 task intro(dependsOn: hello2) << {
     println "Hi gradle"
 }
+
+task taskX(dependsOn: 'taskY') << {
+    println "this is taskx"
+}
+task taskY << {
+    println "this is tasky"
+}
+
+//动态
+4.times {counter->
+    task "task$counter" << {
+        println "this is task$counter"
+    }
+}
+task0.dependsOn task2,task3
 
 
 
